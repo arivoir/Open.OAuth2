@@ -1,13 +1,12 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Open.OAuth2
 {
-    [DataContract]
     public class OAuth2Error
     {
-        [DataMember(Name = "error")]
+        [JsonPropertyName("error")]
         public string Error { get; set; }
-        [DataMember(Name = "error_description")]
+        [JsonPropertyName("error_description")]
         public string ErrorDescription { get; set; }
     }
 }

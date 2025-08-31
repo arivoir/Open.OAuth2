@@ -1,19 +1,22 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Open.OAuth2
 {
-    [DataContract]
     public class OAuth2Token
     {
-        [DataMember(Name = "access_token")]
+        [JsonPropertyName("access_token")]
         public string AccessToken { get; set; }
-        [DataMember(Name = "refresh_token", IsRequired = false)]
+
+        [JsonPropertyName("refresh_token")]
         public string RefreshToken { get; set; }
-        [DataMember(Name = "token_type")]
+
+        [JsonPropertyName("token_type")]
         public string Type { get; set; }
-        [DataMember(Name = "expires_in")]
+
+        [JsonPropertyName("expires_in")]
         public long ExpiresIn { get; set; }
-        //[DataMember(Name = "scope")]
-        //public string Scope { get; set; }
+
+        [JsonPropertyName("scope")]
+        public string Scope { get; set; }
     }
 }
