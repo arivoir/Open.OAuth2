@@ -63,6 +63,12 @@ namespace Open.OAuth2
 
         public static async Task<T> RefreshAccessTokenAsync<T>(string tokenUrl, string refreshToken, string clientId, string clientSecret, CancellationToken cancellationToken)
         {
+            if (string.IsNullOrWhiteSpace(tokenUrl))
+                throw new ArgumentNullException(nameof(tokenUrl));
+            if (string.IsNullOrWhiteSpace(refreshToken))
+                throw new ArgumentNullException(nameof(refreshToken));
+            if (string.IsNullOrWhiteSpace(clientId))
+                throw new ArgumentNullException(nameof(clientId));
 
             var uri = new Uri(tokenUrl);
             var client = new HttpClient(HttpMessageHandlerFactory.Default.GetHttpMessageHandler());

@@ -42,5 +42,16 @@ namespace Open.OAuth2.Test
             Assert.That(deserializedAuthentiactionToken.ExpiresIn, Is.EqualTo(3599));
             Assert.That(deserializedAuthentiactionToken.Type, Is.EqualTo("Bearer"));
         }
+
+        [TestCase("", "A", "A")]
+        [TestCase("A", "", "A")]
+        [TestCase("A", "A", "")]
+        public void TestNonNullArgumentInRefreshAccessToken(string tokenUrl, string refreshToken, string clientId)
+        {
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
+            {
+                await OAuth2Client.RefreshAccessTokenAsync(tokenUrl, refreshToken, clientId, "", CancellationToken.None);
+            });
+        }
     }
 }
